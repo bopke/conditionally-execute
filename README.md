@@ -6,7 +6,7 @@
 Install with npm:
 
 ```bash
-npm install bopke/conditionaly-execute
+npm install conditionaly-execute
 ```
 
 ## Usage
