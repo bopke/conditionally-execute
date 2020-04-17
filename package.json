@@ -1,0 +1,31 @@
+{
+  "name": "conditionally-execute",
+  "description": "Lets you abandon \"if\" keyword",
+  "version": "1.0.0",
+  "homepage": "https://github.com/bopke/conditionally-execute",
+  "author": "Michał Kubik (https://github.com/bopke)",
+  "license": "MIT",
+  "contributors": [
+    "Michał Kubik (https://github.com/bopke)"
+  ],
+  "repository": "bopke/conditionally-execute",
+  "bugs": {
+    "url": "https://github.com/bopke/conditionally-execute/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "if",
+    "execution",
+    "condition",
+    "conditional execution"
+  ]
+}
