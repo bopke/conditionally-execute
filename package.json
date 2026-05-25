@@ -1,31 +1,19 @@
 {
-  "name": "conditionally-execute",
-  "description": "Lets you abandon \"if\" keyword",
-  "version": "1.0.0",
-  "homepage": "https://github.com/bopke/conditionally-execute",
-  "author": "Michał Kubik (https://github.com/bopke)",
+  "name": "conditionally-execute-monorepo",
+  "version": "2.0.0",
+  "description": "Monorepo for conditionally-execute (JavaScript + Java).",
+  "private": true,
   "license": "MIT",
-  "contributors": [
-    "Michał Kubik (https://github.com/bopke)"
-  ],
   "repository": "bopke/conditionally-execute",
-  "bugs": {
-    "url": "https://github.com/bopke/conditionally-execute/issues"
-  },
-  "files": [
-    "index.js"
+  "homepage": "https://github.com/bopke/conditionally-execute",
+  "workspaces": [
+    "packages/js"
   ],
-  "main": "index.js",
-  "devDependencies": {
-    "mocha": "^10.8.2"
-  },
   "scripts": {
-    "test": "mocha"
-  },
-  "keywords": [
-    "if",
-    "execution",
-    "condition",
-    "conditional execution"
-  ]
+    "test": "npm test --workspace=packages/js",
+    "test:js": "npm test --workspace=packages/js",
+    "test:java": "cd packages/java && ./gradlew test",
+    "lint": "npm run lint --workspace=packages/js",
+    "bench": "npm run bench --workspace=packages/js"
+  }
 }

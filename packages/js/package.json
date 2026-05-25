@@ -1,0 +1,65 @@
+{
+  "name": "conditionally-execute",
+  "description": "Composable conditional execution for Node.js",
+  "version": "2.0.0",
+  "homepage": "https://github.com/bopke/conditionally-execute",
+  "author": "Michał Kubik (https://github.com/bopke)",
+  "license": "MIT",
+  "contributors": [
+    "Michał Kubik (https://github.com/bopke)"
+  ],
+  "repository": "bopke/conditionally-execute",
+  "bugs": {
+    "url": "https://github.com/bopke/conditionally-execute/issues"
+  },
+  "files": [
+    "src/"
+  ],
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./plugins": "./src/plugins/index.js",
+    "./plugins/*": "./src/plugins/*.js"
+  },
+  "scripts": {
+    "test": "node test/parallel.js",
+    "test:core": "mocha --timeout 10000 test/core.js",
+    "test:grpc": "mocha --timeout 15000 test/grpc.js",
+    "test:multi-threaded": "mocha --timeout 15000 test/multi-threaded.js",
+    "lint": "eslint src/ test/ bench.js",
+    "lint:fix": "eslint src/ test/ bench.js --fix",
+    "bench": "node bench.js",
+    "mutation": "stryker run"
+  },
+  "keywords": [
+    "conditional",
+    "execution",
+    "middleware",
+    "composable",
+    "if"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.1",
+    "@stryker-mutator/core": "^9.6.1",
+    "@stryker-mutator/mocha-runner": "^9.6.1",
+    "eslint": "^9.0.0",
+    "mocha": "^10.8.2"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": ">=1.8.0",
+    "@grpc/proto-loader": ">=0.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@grpc/grpc-js": {
+      "optional": true
+    },
+    "@grpc/proto-loader": {
+      "optional": true
+    }
+  }
+}

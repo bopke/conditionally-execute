@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package conditionally_execute;
+
+// Each ConditionallyExecute node exposes this service.
+// The coordinator calls Execute() on all nodes simultaneously.
+// Each node runs its locally registered handler and reports back.
+service ConditionallyExecuteNode {
+  // Execute a conditional handler on this node.
+  rpc Execute (ExecuteRequest) returns (ExecuteResponse);
+
+  // Health check — verifies the node is reachable before execution.
+  rpc Health (HealthRequest) returns (HealthResponse);
+}
+
+message ExecuteRequest {
+  // Unique ID for this execution round (for idempotency / tracing)
+  string request_id = 1;
+
+  // The evaluated condition value
+  bool condition = 2;
+
+  // Name of the handler to invoke (must be registered on the node)
+  string handler_name = 3;
+
+  // Optional metadata passed through to the node
+  map<string, string> metadata = 4;
+}
+
+message ExecuteResponse {
+  // Node identifier
+  string node_id = 1;
+
+  // Whether the handler was actually executed (false = handler not found / condition filtered it)
+  bool executed = 2;
+
+  // Which branch ran: "onTrue" or "onFalse"
+  string branch = 3;
+
+  // Wall-clock duration of handler execution on this node (ms)
+  double duration_ms = 4;
+
+  // Non-empty if the handler threw an error
+  string error = 5;
+}
+
+message HealthRequest {}
+
+message HealthResponse {
+  string node_id = 1;
+
+  // "ok" | "degraded" | "unhealthy"
+  string status = 2;
+
+  // Registered handler names on this node
+  repeated string handlers = 3;
+}
